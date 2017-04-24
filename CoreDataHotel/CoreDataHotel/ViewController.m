@@ -24,6 +24,9 @@
 }
 
 -(void)setupLayout{
+    
+    float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
@@ -40,7 +43,9 @@
 
 -(void)browseButtonSelected{
     NSLog(@"Work on this in lab");
+    //only need 3 lines of code no need for story board segues.
 }
+
 
 -(UIButton *)createButtonWithTitle:(NSString *) title{
     
