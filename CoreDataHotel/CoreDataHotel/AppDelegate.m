@@ -78,6 +78,14 @@
                 newRoom.hotel = newHotel;
             }
         }
+        NSError *saveError;
+        [self.persistentContainer.viewContext save:&saveError];
+        
+        if (saveError) {
+            NSLog(@"There was an error saving to core data");
+        } else {
+            NSLog(@"Sussesfully saved to Core Data");
+        }
     }
 }
 
