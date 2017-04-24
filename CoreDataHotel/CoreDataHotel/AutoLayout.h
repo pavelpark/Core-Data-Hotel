@@ -12,12 +12,12 @@
 
 +(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
                                       toView:(UIView *)superView
-                               withAttribute:(NSLayoutAttribute *)attribute
+                               withAttribute:(NSLayoutAttribute)attribute
                                andMultiplier:(CGFloat)multiplier;
 
 +(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
                                       toView:(UIView *)superView
-                               withAttribute:(NSLayoutAttribute *)attribute;
+                               withAttribute:(NSLayoutAttribute)attribute;
 
 +(NSArray *)fullScreenConstraintsWithVFLForView:(UIView *)view;
 

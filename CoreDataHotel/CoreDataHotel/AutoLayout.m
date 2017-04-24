@@ -38,4 +38,30 @@
     return constraints.copy;
 }
 
++(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
+                                      toView:(UIView *)superView
+                               withAttribute:(NSLayoutAttribute)attribute
+                               andMultiplier:(CGFloat)multiplier{
+    
+    NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:view
+                                                                  attribute:attribute
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:superView
+                                                                  attribute:attribute
+                                                                 multiplier:multiplier
+                                                                   constant:0.0];
+    
+    constraint.active = YES;
+    
+    return constraint;
+}
+
++(NSLayoutConstraint *)genericConstraintFrom:(UIView *)view
+                                      toView:(UIView *)superView
+                               withAttribute:(NSLayoutAttribute)attribute{
+    
+    return [AutoLayout genericConstraintFrom:view toView:view withAttribute:attribute andMultiplier:1.0];
+}
+
+
 @end
