@@ -13,6 +13,7 @@
 		DB3AE9401EAE5FC6009F8DB3 /* CoreDataHotel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB3AE93E1EAE5FC6009F8DB3 /* CoreDataHotel.xcdatamodeld */; };
 		DB3AE9421EAE5FC6009F8DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB3AE9411EAE5FC6009F8DB3 /* Assets.xcassets */; };
 		DB3AE9451EAE5FC6009F8DB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB3AE9431EAE5FC6009F8DB3 /* LaunchScreen.storyboard */; };
+		DB3AE94E1EAE6D42009F8DB3 /* AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3AE94D1EAE6D42009F8DB3 /* AutoLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		DB3AE9411EAE5FC6009F8DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB3AE9441EAE5FC6009F8DB3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB3AE9461EAE5FC6009F8DB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB3AE94C1EAE6D42009F8DB3 /* AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoLayout.h; sourceTree = "<group>"; };
+		DB3AE94D1EAE6D42009F8DB3 /* AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		DB3AE9311EAE5FC6009F8DB3 /* CoreDataHotel */ = {
 			isa = PBXGroup;
 			children = (
+				DB3AE94F1EAE6D53009F8DB3 /* Model */,
 				DB3AE9351EAE5FC6009F8DB3 /* AppDelegate.h */,
 				DB3AE9361EAE5FC6009F8DB3 /* AppDelegate.m */,
 				DB3AE9381EAE5FC6009F8DB3 /* ViewController.h */,
@@ -77,6 +81,15 @@
 				DB3AE9331EAE5FC6009F8DB3 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DB3AE94F1EAE6D53009F8DB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB3AE94C1EAE6D42009F8DB3 /* AutoLayout.h */,
+				DB3AE94D1EAE6D42009F8DB3 /* AutoLayout.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,6 +167,7 @@
 				DB3AE9401EAE5FC6009F8DB3 /* CoreDataHotel.xcdatamodeld in Sources */,
 				DB3AE9371EAE5FC6009F8DB3 /* AppDelegate.m in Sources */,
 				DB3AE9341EAE5FC6009F8DB3 /* main.m in Sources */,
+				DB3AE94E1EAE6D42009F8DB3 /* AutoLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
