@@ -20,6 +20,26 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+-(void)setupLayout{
+    UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
+    UIButton *bookButton = [self createButtonWithTitle:@"Book"];
+    UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
+    
+}
+
+-(UIButton *)createButtonWithTitle:(NSString *) title{
+    
+    UIButton *button = [[UIButton alloc]init];
+    
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    
+    [button setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [self.view addSubview:button];
+    
+    return button;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
