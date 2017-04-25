@@ -8,6 +8,7 @@
 
 #import "DatePickerViewController.h"
 #import "AvailabilityViewController.h"
+#import "AutoLayout.h"
 
 @interface DatePickerViewController ()
 
@@ -59,21 +60,42 @@
     [super viewDidLoad];
 }
 
--(void)setupDatePickers{
-    
-    self.startDate = [[UIDatePicker alloc] init];
+- (void)setupDatePickers{
+    self.startDate = [[UIDatePicker alloc]init];
     self.startDate.datePickerMode = UIDatePickerModeDate;
-    self.startDate.frame = CGRectMake(0, 84.0, self.view.frame.size.width, 200.0);
-    
-    [self.view addSubview:self.startDate];
     
     self.endDate = [[UIDatePicker alloc]init];
     self.endDate.datePickerMode = UIDatePickerModeDate;
     
-    self.endDate.frame = CGRectMake(0, 84.0, self.view.frame.size.width, 200.0);
-    //will need too make it so when the screen is rotated so that costraints work too.
+    
+    [self.view addSubview:self.startDate];
     [self.view addSubview:self.endDate];
     
+    float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    
+    CGFloat statusBarHeight = 20.0;
+    CGFloat topMargin = navBarHeight + statusBarHeight;
+    CGFloat windowHeight = self.view.frame.size.height;
+    CGFloat frameHeight = ((windowHeight - topMargin) / 2);
+    
+    NSDictionary *viewDictionary = @{@"startDate": self.startDate, @"endDate": self.endDate};
+    
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin], @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
+    
+    NSString *visualFormatString = @"V:|-topMargin-[startDate(==frameHeight)][endDate(==startDate)]|";
+    
+    [AutoLayout leadingConstraintFrom:self.startDate toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.startDate toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.endDate toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.endDate toView:self.view];
+    
+    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary
+                               forMetricsDictionary:metricsDictionary
+                                        withOptions:0
+                                   withVisualFormat:visualFormatString];
+    
+    [self.startDate setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.endDate setTranslatesAutoresizingMaskIntoConstraints:NO];
     
 }
 @end

@@ -9,8 +9,10 @@
 #import "AvailabilityViewController.h"
 #import "AutoLayout.h"
 #import "AppDelegate.h"
+
 #import "Reservation+CoreDataClass.h"
 #import "Reservation+CoreDataProperties.h"
+
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
 @interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -65,6 +67,7 @@
     
     NSLog(@"%@", _endDate);
       NSLog(@"%@", _startDate);
+
 
     // Do any additional setup after loading the view.
     
