@@ -30,21 +30,21 @@
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
     
-    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+    browseButton.backgroundColor = [UIColor colorWithRed:0.44 green:0.69 blue:0.36 alpha:1.0];
 
     [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
     [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
 
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
     
-    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+    bookButton.backgroundColor = [UIColor colorWithRed:0.78 green:0.76 blue:0.40 alpha:1.0];
     
     [AutoLayout leadingConstraintFrom:bookButton toView:self.view];
     [AutoLayout trailingConstraintFrom:bookButton toView:self.view];
 
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     
-    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+    lookupButton.backgroundColor = [UIColor colorWithRed:0.70 green:0.32 blue:0.32 alpha:1.0];
     
     [AutoLayout leadingConstraintFrom:lookupButton toView:self.view];
     [AutoLayout trailingConstraintFrom:lookupButton toView:self.view];
