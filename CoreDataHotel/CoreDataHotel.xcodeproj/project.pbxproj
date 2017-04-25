@@ -75,8 +75,6 @@
 			children = (
 				DB3AE9561EAE9566009F8DB3 /* controller */,
 				DB3AE94F1EAE6D53009F8DB3 /* Model */,
-				DB3AE9351EAE5FC6009F8DB3 /* AppDelegate.h */,
-				DB3AE9361EAE5FC6009F8DB3 /* AppDelegate.m */,
 				DB3AE9411EAE5FC6009F8DB3 /* Assets.xcassets */,
 				DB3AE9431EAE5FC6009F8DB3 /* LaunchScreen.storyboard */,
 				DB3AE9461EAE5FC6009F8DB3 /* Info.plist */,
@@ -113,6 +111,8 @@
 				DB3AE95C1EAEC9D8009F8DB3 /* RoomsViewController.m */,
 				DB3AE9581EAEA486009F8DB3 /* HotelsViewController.h */,
 				DB3AE9591EAEA486009F8DB3 /* HotelsViewController.m */,
+				DB3AE9351EAE5FC6009F8DB3 /* AppDelegate.h */,
+				DB3AE9361EAE5FC6009F8DB3 /* AppDelegate.m */,
 				DB3AE9571EAE9591009F8DB3 /* View */,
 			);
 			name = controller;

@@ -16,7 +16,9 @@
 
 #import "AutoLayout.h"
 
-@interface HotelsViewController () <UITableViewDataSource>
+#import "RoomsViewController.h"
+
+@interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) NSArray *allHotels;
 
@@ -30,8 +32,9 @@
     [super loadView];
     self.view.backgroundColor = [UIColor whiteColor];
     self.tableView = [[UITableView alloc]init];
-    [self allHotels];
     [self setupLayout];
+    
+    [self.view addSubview:self.tableView];
     //add TableView as subview and apply constraints.
 }
 
@@ -44,9 +47,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+    [self allHotels];
 }
 
 -(NSArray *)allHotels{
@@ -67,10 +73,12 @@
     return _allHotels;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return [_allHotels count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     Hotel *hotel = _allHotels[indexPath.row];
@@ -78,6 +86,15 @@
     cell.textLabel.text = hotel.name;
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    RoomsViewController *goingToTheRoom = [[RoomsViewController alloc]init];
+    goingToTheRoom.selectedHotel = self.allHotels[indexPath.row];
+    [self.navigationController pushViewController:goingToTheRoom animated:YES];
+//    NSLog(@"%@", _allHotels);
+}
+
 
 @end
 //allHotels count for Rows in section.
