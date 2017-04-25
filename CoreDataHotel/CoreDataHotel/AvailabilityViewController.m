@@ -13,7 +13,7 @@
 #import "Reservation+CoreDataProperties.h"
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
-@interface AvailabilityViewController () <UITableViewDataSource>
+@interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *tableView;
 
@@ -47,8 +47,8 @@
 //        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error: &availableRoomError];
 //        
 //    }
-    
     return _availableRooms;
+
 }
 
 -(void)loadView{
@@ -61,6 +61,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    NSLog(@"%@", _endDate);
+      NSLog(@"%@", _startDate);
+
     // Do any additional setup after loading the view.
     
 }
@@ -95,6 +100,8 @@
     
     return cell;
 }
-
+//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    DatePickerViewController *currentDateReserved = [[DatePickerViewController alloc] init];
+//}
 
 @end
