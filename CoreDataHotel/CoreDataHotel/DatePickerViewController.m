@@ -20,8 +20,20 @@
     [super loadView];
     
     [self setupDatePickers];
+    [self setupDoneButton];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+}
+
+-(void)setupDoneButton{
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneButtonPressed)];
+    
+    [self.navigationItem setRightBarButtonItem:doneButton];
+}
+
+-(void)doneButtonPressed{
+    
 }
 
 - (void)viewDidLoad {
@@ -31,7 +43,7 @@
 -(void)setupDatePickers{
     
     self.endDate = [[UIDatePicker alloc]init];
-    self.endDate.datePickerMode = UIDatePickerModeDateAndTime;
+    self.endDate.datePickerMode = UIDatePickerModeDate;
     
     self.endDate.frame = CGRectMake(0, 84.0, self.view.frame.size.width, 200.0);
     //will need too make it so when the screen is rotated so that costraints work too.

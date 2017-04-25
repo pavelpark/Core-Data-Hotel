@@ -29,11 +29,26 @@
     
     
     UIButton *browseButton = [self createButtonWithTitle:@"Browse"];
+    
+    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+
+    [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
+
     UIButton *bookButton = [self createButtonWithTitle:@"Book"];
+    
+    browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
+    
+    [AutoLayout leadingConstraintFrom:bookButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:bookButton toView:self.view];
+
     UIButton *lookupButton = [self createButtonWithTitle:@"Look Up"];
     
     browseButton.backgroundColor = [UIColor colorWithRed:1.0 green:1.0 blue:0.75 alpha:1.0];
     
+    [AutoLayout leadingConstraintFrom:lookupButton toView:self.view];
+    [AutoLayout trailingConstraintFrom:lookupButton toView:self.view];
+
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     CGFloat statusBarHeight = 20.0;
     CGFloat topMargin = navBarHeight + statusBarHeight;
@@ -47,9 +62,6 @@
     NSString *visualFormatString = @"V:|-topMargin-[browseButton(==buttonHeight)][bookButton(==browseButton)][lookupButton(==browseButton)]|";
     
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
-    
-    [AutoLayout leadingConstraintFrom:browseButton toView:self.view];
-    [AutoLayout trailingConstraintFrom:browseButton toView:self.view];
     
 //    NSLayoutConstraint *browseHeight = [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.33];
     
