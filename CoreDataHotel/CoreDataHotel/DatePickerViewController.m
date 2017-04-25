@@ -34,6 +34,11 @@
 
 -(void)doneButtonPressed{
     
+    NSDate *endDate = self.endDate.date;
+    
+    if ([[NSDate date] timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
+        self.endDate.date = [NSDate date];
+    }
 }
 
 - (void)viewDidLoad {
