@@ -38,6 +38,7 @@
     
     if ([[NSDate date] timeIntervalSinceReferenceDate] > [endDate timeIntervalSinceReferenceDate]) {
         self.endDate.date = [NSDate date];
+        return;
     }
 }
 
