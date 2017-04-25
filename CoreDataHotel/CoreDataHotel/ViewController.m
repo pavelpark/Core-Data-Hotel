@@ -10,6 +10,7 @@
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
 
+#import "DatePickerViewController.h"
 @interface ViewController ()
 
 @end
@@ -40,13 +41,22 @@
     NSLayoutConstraint *browseHeight = [AutoLayout equalHeightConstraintFromView:browseButton toView:self.view withMultiplier:0.33];
     
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
-    }
-
+    
+    [bookButton addTarget:self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    
+}
 -(void)browseButtonSelected{
     HotelsViewController *hotelsView = [[HotelsViewController alloc]init];
     NSLog(@"Works");
     [self.navigationController pushViewController: hotelsView animated:YES];
     //only need 3 lines of code.
+}
+
+-(void)bookButtonSelected{
+    
+    DatePickerViewController *datePickerController = [[DatePickerViewController alloc]init];
+    
+    [self.navigationController pushViewController:datePickerController animated:YES];
 }
 
 
