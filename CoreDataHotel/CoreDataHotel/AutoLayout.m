@@ -16,16 +16,16 @@
     
     NSDictionary *viewDictionary = @{@"view": view};
     
-    CGFloat padding = 10.0;
-    CGFloat paddingMultiplier = 5.0;
+//    CGFloat padding = 10.0;
+//    CGFloat paddingMultiplier = 5.0;
     
     
-    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]"
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
                                                                              options: 0
                                                                              metrics: nil
                                                                                views:viewDictionary];
     
-    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]"
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|"
                                                                              options: 0
                                                                              metrics: nil
                                                                                views:viewDictionary];
@@ -60,7 +60,10 @@
                                       toView:(UIView *)superView
                                withAttribute:(NSLayoutAttribute)attribute{
     
-    return [AutoLayout genericConstraintFrom:view toView:view withAttribute:attribute andMultiplier:1.0];
+    return [AutoLayout genericConstraintFrom:view
+                                      toView:view
+                               withAttribute:attribute
+                               andMultiplier:1.0];
 }
 
 +(NSLayoutConstraint *)equalHeightConstraintFromView:(UIView *)view

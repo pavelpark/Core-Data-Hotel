@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AutoLayout.h"
+#import "HotelsViewController.h"
 
 @interface ViewController ()
 
@@ -42,8 +43,10 @@
     }
 
 -(void)browseButtonSelected{
-    NSLog(@"Work on this in lab");
-    //only need 3 lines of code no need for story board segues.
+    HotelsViewController *hotelsView = [[HotelsViewController alloc]init];
+    NSLog(@"Works");
+    [self presentViewController:hotelsView animated:YES completion:nil];
+    //only need 3 lines of code.
 }
 
 
@@ -62,7 +65,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
