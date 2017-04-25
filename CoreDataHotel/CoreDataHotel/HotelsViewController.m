@@ -6,17 +6,19 @@
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
-#import "ViewController.h"
+//#import "ViewController.h"
 #import "HotelsViewController.h"
 
 #import "AppDelegate.h"
+#import "AutoLayout.h"
 
 #import "Hotel+CoreDataClass.h"
 #import "Hotel+CoreDataProperties.h"
 
-#import "AutoLayout.h"
-
 #import "RoomsViewController.h"
+
+#import "Room+CoreDataProperties.h"
+#import "Room+CoreDataClass.h"
 
 @interface HotelsViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -31,8 +33,9 @@
 -(void)loadView{
     [super loadView];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.tableView = [[UITableView alloc]init];
-    [self setupLayout];
+//    self.tableView = [[UITableView alloc]init];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
+//    [self setupLayout];
     
     [self.view addSubview:self.tableView];
     //add TableView as subview and apply constraints.
@@ -62,6 +65,7 @@
         NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Hotel"];
+        
         NSError * fetchError;
         NSArray *hotels = [context executeFetchRequest:request error:&fetchError];
         
@@ -79,9 +83,9 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    Hotel *hotel = _allHotels[indexPath.row];
+    Hotel *hotel = [_allHotels objectAtIndex:indexPath.row];
     
     cell.textLabel.text = hotel.name;
     return cell;
@@ -92,7 +96,7 @@
     RoomsViewController *goingToTheRoom = [[RoomsViewController alloc]init];
     goingToTheRoom.selectedHotel = self.allHotels[indexPath.row];
     [self.navigationController pushViewController:goingToTheRoom animated:YES];
-//    NSLog(@"%@", _allHotels);
+    NSLog(@"%@", _allHotels);
 }
 
 

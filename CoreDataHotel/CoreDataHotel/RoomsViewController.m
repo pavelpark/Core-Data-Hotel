@@ -7,13 +7,14 @@
 //
 
 #import "RoomsViewController.h"
-
 #import "HotelsViewController.h"
-
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
 
-@interface RoomsViewController () <UITableViewDataSource>
+#import "AppDelegate.h"
+
+#import "Hotel+CoreDataClass.h"
+@interface RoomsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) NSArray *allRooms;
 @property(strong, nonatomic) UITableView *tableView;
@@ -27,7 +28,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.tableView = [[UITableView alloc]init];
+    self.tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     
     [self.view addSubview:self.tableView];
     //add TableView as subview and apply constraints.
@@ -42,6 +43,25 @@
     
     self.allRooms = [[self.selectedHotel rooms] allObjects];
 }
+-(NSArray *)allRooms{
+    if (!_allRooms) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        
+        NSManagedObjectContext *context = appDelegate.persistentContainer.viewContext;
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+        
+        NSError * fetchError;
+        NSArray *rooms = [context executeFetchRequest:request error:&fetchError];
+        
+        if (fetchError) {
+            NSLog(@"There was an error!");
+        }
+        _allRooms = rooms;
+    }
+    return _allRooms;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
     return [self.allRooms count];
@@ -50,18 +70,11 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    if(cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-    }
-    
     Room *room = [self.allRooms objectAtIndex: indexPath.row];
-    
     cell.textLabel.text = [NSString stringWithFormat:@"%hd", room.number];
     NSLog(@"%@", _allRooms);
 
     return cell;
 }
-
-
 
 @end
