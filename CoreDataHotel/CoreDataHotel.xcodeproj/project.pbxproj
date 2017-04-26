@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB08D0911EAFBC6D000A18DC /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB08D0901EAFBC6D000A18DC /* DatePickerViewController.m */; };
+		DB08D0941EAFCF96000A18DC /* AvailabilityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB08D0931EAFCF96000A18DC /* AvailabilityViewController.m */; };
+		DB08D0971EB018FE000A18DC /* BookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB08D0961EB018FE000A18DC /* BookViewController.m */; };
 		DB3AE9341EAE5FC6009F8DB3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3AE9331EAE5FC6009F8DB3 /* main.m */; };
 		DB3AE9371EAE5FC6009F8DB3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3AE9361EAE5FC6009F8DB3 /* AppDelegate.m */; };
 		DB3AE93A1EAE5FC6009F8DB3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB3AE9391EAE5FC6009F8DB3 /* ViewController.m */; };
@@ -22,6 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB08D08F1EAFBC6D000A18DC /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		DB08D0901EAFBC6D000A18DC /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		DB08D0921EAFCF96000A18DC /* AvailabilityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AvailabilityViewController.h; sourceTree = "<group>"; };
+		DB08D0931EAFCF96000A18DC /* AvailabilityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AvailabilityViewController.m; sourceTree = "<group>"; };
+		DB08D0951EB018FE000A18DC /* BookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookViewController.h; sourceTree = "<group>"; };
+		DB08D0961EB018FE000A18DC /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		DB3AE92F1EAE5FC6009F8DB3 /* CoreDataHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB3AE9331EAE5FC6009F8DB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB3AE9351EAE5FC6009F8DB3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -113,6 +122,12 @@
 				DB3AE9591EAEA486009F8DB3 /* HotelsViewController.m */,
 				DB3AE9351EAE5FC6009F8DB3 /* AppDelegate.h */,
 				DB3AE9361EAE5FC6009F8DB3 /* AppDelegate.m */,
+				DB08D08F1EAFBC6D000A18DC /* DatePickerViewController.h */,
+				DB08D0901EAFBC6D000A18DC /* DatePickerViewController.m */,
+				DB08D0921EAFCF96000A18DC /* AvailabilityViewController.h */,
+				DB08D0931EAFCF96000A18DC /* AvailabilityViewController.m */,
+				DB08D0951EB018FE000A18DC /* BookViewController.h */,
+				DB08D0961EB018FE000A18DC /* BookViewController.m */,
 				DB3AE9571EAE9591009F8DB3 /* View */,
 			);
 			name = controller;
@@ -201,9 +216,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB08D0911EAFBC6D000A18DC /* DatePickerViewController.m in Sources */,
 				DB3AE93A1EAE5FC6009F8DB3 /* ViewController.m in Sources */,
 				DB3AE9401EAE5FC6009F8DB3 /* CoreDataHotel.xcdatamodeld in Sources */,
 				DB3AE9371EAE5FC6009F8DB3 /* AppDelegate.m in Sources */,
+				DB08D0941EAFCF96000A18DC /* AvailabilityViewController.m in Sources */,
+				DB08D0971EB018FE000A18DC /* BookViewController.m in Sources */,
 				DB3AE95A1EAEA486009F8DB3 /* HotelsViewController.m in Sources */,
 				DB3AE95D1EAEC9D8009F8DB3 /* RoomsViewController.m in Sources */,
 				DB3AE9341EAE5FC6009F8DB3 /* main.m in Sources */,
@@ -360,6 +378,7 @@
 				DB3AE94B1EAE5FC6009F8DB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

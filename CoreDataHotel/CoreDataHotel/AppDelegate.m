@@ -73,8 +73,8 @@
                 
                 NSNumber *number = room[@"number"];
                 newRoom.number = [number integerValue];
-                newRoom.beds = (NSInteger)room[@"beds"];
-                newRoom.rate = (NSInteger)room[@"rate"];
+                newRoom.beds = [(NSNumber *)room[@"beds"] intValue];
+                newRoom.rate = [(NSNumber *)room[@"rate"] floatValue];
                 
                 newRoom.hotel = newHotel;
             }
