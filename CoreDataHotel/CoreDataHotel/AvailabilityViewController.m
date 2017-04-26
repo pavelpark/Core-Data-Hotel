@@ -39,7 +39,8 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
         NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate]; //reference self.startDate
+        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate];
+        //reference self.startDate
         NSError *roomError;
         NSArray *results = [appDelegate.persistentContainer.viewContext executeFetchRequest:request error:&roomError];
         

@@ -45,7 +45,7 @@
 		DB08D0961EB018FE000A18DC /* BookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookViewController.m; sourceTree = "<group>"; };
 		DB08D09C1EB111CA000A18DC /* CoreDataHotelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataHotelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB08D0A01EB111CA000A18DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DB08D0A61EB11479000A18DC /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoLayoutTests.m; sourceTree = "<group>"; };
+		DB08D0A61EB11479000A18DC /* AutoLayoutTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AutoLayoutTests.m; path = ../AutoLayoutTests.m; sourceTree = "<group>"; };
 		DB08D0A81EB14134000A18DC /* LookUpRerservationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookUpRerservationController.h; sourceTree = "<group>"; };
 		DB08D0A91EB14134000A18DC /* LookUpRerservationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LookUpRerservationController.m; sourceTree = "<group>"; };
 		DB3AE92F1EAE5FC6009F8DB3 /* CoreDataHotel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataHotel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +90,7 @@
 		DB08D09D1EB111CA000A18DC /* CoreDataHotelTests */ = {
 			isa = PBXGroup;
 			children = (
+				DB08D0A61EB11479000A18DC /* AutoLayoutTests.m */,
 				DB08D0A01EB111CA000A18DC /* Info.plist */,
 			);
 			path = CoreDataHotelTests;
@@ -98,7 +99,6 @@
 		DB3AE9261EAE5FC6009F8DB3 = {
 			isa = PBXGroup;
 			children = (
-				DB08D0A61EB11479000A18DC /* AutoLayoutTests.m */,
 				DB3AE9311EAE5FC6009F8DB3 /* CoreDataHotel */,
 				DB08D09D1EB111CA000A18DC /* CoreDataHotelTests */,
 				DB3AE9301EAE5FC6009F8DB3 /* Products */,
