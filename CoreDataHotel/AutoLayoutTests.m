@@ -22,13 +22,13 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+
     self.testController = [[UIViewController alloc]init];
     
     self.testView1 = [[UIView alloc]init];
     self.testView2 = [[UIView alloc]init];
     
-    //creating subViews
+//    //creating subViews
     [self.testController.view addSubview:self.testView1];
     [self.testController.view addSubview:self.testView2];
 }
@@ -44,7 +44,9 @@
     [super tearDown];
 }
 
+//Assertion
 -(void)testGenericConstraintFromToViewWithAttribute{
+    
     XCTAssertNotNil(self.testController, @"The testController is nil!");
     XCTAssertNotNil(self.testView1, @"Self.testView1 is nil!");
     XCTAssertNotNil(self.testView2, @"Self.testView1 is nil!");
@@ -52,5 +54,14 @@
     id constraint = [AutoLayout genericConstraintFrom:self.testView1 toView:self.testView2 withAttribute:NSLayoutAttributeTop];
     
     XCTAssert([constraint isKindOfClass:[NSLayoutConstraint class]], @"COnstraint is not an instance of NSLayoutConstraint");
+    
+    
+    XCTAssertTrue([(NSLayoutConstraint *)constraint isActive], @"Constraint was not activated");
 }
+
+
+
+
+
+
 @end

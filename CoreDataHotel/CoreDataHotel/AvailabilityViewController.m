@@ -18,17 +18,21 @@
 
 #import "BookViewController.h"
 
+#import "Hotel+CoreDataClass.h"
+#import "Hotel+CoreDataProperties.h"
+
+
 @interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *tableView;
 
-@property(strong, nonatomic) NSArray *availableRooms;
+@property(strong, nonatomic) NSFetchedResultsController *availableRooms;
 
 @end
 
 @implementation AvailabilityViewController
 
--(NSArray *)availableRooms{
+-(NSFetchedResultsController *)availableRooms{
     
     if (!_availableRooms) {
         
@@ -47,10 +51,16 @@
         NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
         roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
+        NSSortDescriptor *roomSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"hotel.name" ascending:YES];
+        
+        roomRequest.sortDescriptors = @[roomSortDescriptor];
+        
         NSError *availableRoomError;
         
-        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error: &availableRoomError];
         
+        _availableRooms = [[NSFetchedResultsController alloc]initWithFetchRequest:roomRequest managedObjectContext:appDelegate.persistentContainer.viewContext sectionNameKeyPath:@"hotel.name" cacheName:nil];
+        
+        [_availableRooms performFetch:&availableRoomError];
     }
     return _availableRooms;
 }
@@ -93,25 +103,39 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.availableRooms.count;
+    
+    id<NSFetchedResultsSectionInfo> sectionInfo = [[self.availableRooms sections]objectAtIndex:section];
+    return sectionInfo.numberOfObjects;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    Room *currrentRoom = self.availableRooms[indexPath.row];
+    Room *currentRoom = [self.availableRooms objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%i", currrentRoom.number];
+    cell.textLabel.text = [NSString stringWithFormat:@"%i", currentRoom.number];
     
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    Room *room = [self.availableRooms objectAtIndexPath:indexPath];
     BookViewController *bookVC = [[BookViewController alloc]init];
-    bookVC.selectedRoom = self.availableRooms[indexPath.row];
+    
     [self.navigationController pushViewController:bookVC animated:YES];
     NSLog(@"Selected");
 }
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.availableRooms.sections.count;
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.availableRooms.sections objectAtIndex:section];
+    
+    return sectionInfo.name;
+}
+
 @end
