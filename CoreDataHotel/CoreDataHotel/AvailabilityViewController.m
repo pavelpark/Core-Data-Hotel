@@ -52,8 +52,10 @@
         roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
         
         NSSortDescriptor *roomSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"hotel.name" ascending:YES];
+        NSSortDescriptor *roomNumberSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"number" ascending:YES];
+
         
-        roomRequest.sortDescriptors = @[roomSortDescriptor];
+        roomRequest.sortDescriptors = @[roomSortDescriptor, roomNumberSortDescriptor];
         
         NSError *availableRoomError;
         
