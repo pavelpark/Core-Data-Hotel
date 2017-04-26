@@ -28,7 +28,11 @@
 
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    //tearing down properties
     self.testController = nil;
+    self.testView1 = nil;
+    self.testView2 = nil;
     
     [super tearDown];
 }
