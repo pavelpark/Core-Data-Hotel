@@ -110,6 +110,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     BookViewController *bookVC = [[BookViewController alloc]init];
+    bookVC.selectedRoom = self.availableRooms[indexPath.row];
     [self.navigationController pushViewController:bookVC animated:YES];
     NSLog(@"Selected");
 }
