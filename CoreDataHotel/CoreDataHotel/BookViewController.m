@@ -32,16 +32,16 @@
     UITextField *firstName = [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 200, 40)];
     firstName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
     firstName.backgroundColor=[UIColor redColor];
-    firstName.text=@"firstName";
+    firstName.placeholder=@"firstName";
     
     UITextField *lastName = [[UITextField alloc] initWithFrame:CGRectMake(45, firstName.frame.origin.y+75, 200, 40)];
     lastName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
     lastName.backgroundColor=[UIColor redColor];
-    lastName.text=@"lastName";
+    lastName.placeholder=@"lastName";
     
     UITextField *email = [[UITextField alloc]initWithFrame:CGRectMake(45, lastName.frame.origin.y+75, 200, 40)];
     email.backgroundColor = [UIColor redColor];
-    email.text = @"email";
+    email.placeholder = @"email";
     
     UIButton *bookButton = [UIButton buttonWithType:UIButtonTypeCustom];
     bookButton.frame = CGRectMake(80.0, 120.0, 160.0, 40.0);
