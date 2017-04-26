@@ -64,7 +64,7 @@
 -(void)bookButtonPressed {
     
     
-    NSLog(@"Sup");
+    NSLog(@"Booked");
     
 }
 @end
