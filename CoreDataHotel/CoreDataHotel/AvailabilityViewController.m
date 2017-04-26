@@ -15,6 +15,9 @@
 
 #import "Room+CoreDataClass.h"
 #import "Room+CoreDataProperties.h"
+
+#import "BookViewController.h"
+
 @interface AvailabilityViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property(strong, nonatomic) UITableView *tableView;
@@ -27,30 +30,29 @@
 
 -(NSArray *)availableRooms{
     
-//    if (!_availableRooms) {
-//        
-//        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
-//        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate]; //reference self.startDate
-//        NSError *roomError;
-//        NSArray *results = [appDelegate.persistentContainer.viewContext executeFetchRequest:request error:&roomError];
-//        
-//        NSMutableArray *unavailableRooms = [[NSMutableArray alloc] init];
-//        
-//        for (Reservation *reservation in results) {
-//            [unavailableRooms addObject:reservation.room];
-//        }
-//        NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
-//        roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
-//        
-//        NSError *availableRoomError;
-//        
-//        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error: &availableRoomError];
-//        
-//    }
+    if (!_availableRooms) {
+        
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Reservation"];
+        request.predicate = [NSPredicate predicateWithFormat:@"startDate <= %@ AND endDate >= %@", self.endDate, self.startDate]; //reference self.startDate
+        NSError *roomError;
+        NSArray *results = [appDelegate.persistentContainer.viewContext executeFetchRequest:request error:&roomError];
+        
+        NSMutableArray *unavailableRooms = [[NSMutableArray alloc] init];
+        
+        for (Reservation *reservation in results) {
+            [unavailableRooms addObject:reservation.room];
+        }
+        NSFetchRequest *roomRequest = [NSFetchRequest fetchRequestWithEntityName:@"Room"];
+        roomRequest.predicate = [NSPredicate predicateWithFormat:@"NOT self IN %@", unavailableRooms];
+        
+        NSError *availableRoomError;
+        
+        _availableRooms = [appDelegate.persistentContainer.viewContext executeFetchRequest:roomRequest error: &availableRoomError];
+        
+    }
     return _availableRooms;
-
 }
 
 -(void)loadView{
@@ -64,9 +66,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    NSLog(@"%@", _startDate);
     NSLog(@"%@", _endDate);
-      NSLog(@"%@", _startDate);
+    
 
 
     // Do any additional setup after loading the view.
@@ -80,6 +82,7 @@
     [self.view addSubview:self.tableView];
     
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
@@ -103,8 +106,11 @@
     
     return cell;
 }
-//-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    DatePickerViewController *currentDateReserved = [[DatePickerViewController alloc] init];
-//}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    BookViewController *bookVC = [[BookViewController alloc]init];
+    [self.navigationController pushViewController:bookVC animated:YES];
+    NSLog(@"Selected");
+}
 @end
