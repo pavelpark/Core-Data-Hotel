@@ -77,6 +77,37 @@ BOOL isSearching;
     
     [self.lookUpTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
+    self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
+    self.lookUpTable.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //Adds it to the actual view with the addSubview.
+    [self.view addSubview:self.searchBar];
+    [self.view addSubview:self.lookUpTable];
+    
+    //Getting the value for the navigationBar
+    float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
+    
+    CGFloat statusBarHeight = 20.0;
+    CGFloat topMargin = navBarHeight + statusBarHeight;
+    CGFloat windowHeight = self.view.frame.size.height;
+    CGFloat frameHeight = (windowHeight - topMargin - statusBarHeight);
+    
+    NSDictionary *viewDictionary = @{@"searchBar":self.searchBar,
+                                     @"lookUpTable":self.lookUpTable};
+    
+    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
+                                        @"frameHight": [NSNumber numberWithFloat:frameHeight]};
+    //Setting up how its going to display on the table view using the NSDictionaries above^.
+    NSString *visualFormatString =@"V:|-topMargin-[searchBar(==topMargin)][lookUpTable(==frameHeight)]|";
+    
+    //spreding out across the view with constraints.
+    [AutoLayout leadingConstraintFrom:self.searchBar toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.searchBar toView:self.view];
+    [AutoLayout leadingConstraintFrom:self.lookUpTable toView:self.view];
+    [AutoLayout trailingConstraintFrom:self.lookUpTable toView:self.view];
+    
+    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
+
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
