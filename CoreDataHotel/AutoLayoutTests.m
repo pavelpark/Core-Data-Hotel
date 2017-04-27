@@ -102,11 +102,11 @@
     XCTAssertNotNil(self.testView, @"Self.testView is nil!");
     XCTAssertNotNil(self.superView, @"Self.superView is nil!");
 
-    id constraint = [AutoLayout genericConstraintFrom:self.testView toView:self.superView withAttribute:NSLayoutAttributeTop];
+    id constraint = [AutoLayout genericConstraintFrom:self.testView
+                                               toView:self.superView
+                                        withAttribute:NSLayoutAttributeTop];
     
     XCTAssert([constraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
-    
-    
     XCTAssertTrue([(NSLayoutConstraint *)constraint isActive], @"Constraint was not activated");
 }
 
@@ -115,10 +115,11 @@
     XCTAssertNotNil(self.equalHeightConstraintView, @"Self.equalHeightConstraintView");
     XCTAssertNotNil(self.equalHeightConstraintOtherView, @"Self.equalHeightConstraintOtherView");
     
-    id equalConstraint = [AutoLayout equalHeightConstraintFromView:self.equalHeightConstraintView toView:self.equalHeightConstraintOtherView withMultiplier:NSLayoutAttributeTop];
+    id equalConstraint = [AutoLayout equalHeightConstraintFromView:self.equalHeightConstraintView
+                                                            toView:self.equalHeightConstraintOtherView
+                                                    withMultiplier:NSLayoutAttributeTop];
     
     XCTAssert([equalConstraint isKindOfClass:[NSLayoutConstraint class]], @"Equal constraint is not an instance of NSLayoutConstraint");
-    
     XCTAssertTrue([(NSLayoutConstraint *)equalConstraint isActive], @"Equal Constraint were not equal");
 }
 
@@ -127,10 +128,10 @@
     XCTAssertNotNil(self.leadingConstraintsView, @"Self.leadingConstraintsView");
     XCTAssertNotNil(self.leadingConstraintOtherView, @"Self.leadingConstraintOtherView");
     
-    id leadingConstraint = [AutoLayout leadingConstraintFrom:self.leadingConstraintsView toView:self.leadingConstraintOtherView];
+    id leadingConstraint = [AutoLayout leadingConstraintFrom:self.leadingConstraintsView
+                                                      toView:self.leadingConstraintOtherView];
     
     XCTAssert([leadingConstraint isKindOfClass:[NSLayoutConstraint class]], @"Leading constraint is not a instance of NSLayoutConstraint");
-    
     XCTAssertTrue([(NSLayoutConstraint *)leadingConstraint isActive], @"No Leading constraints!");
 }
 
@@ -139,11 +140,10 @@
     XCTAssertNotNil(self.trailingConstraintView, @"Self.trailingConstraintView");
     XCTAssertNotNil(self.trailingConstraintOtherView, @"Self.trailingConstraintOtherView");
     
-    id trailingConstraint = [AutoLayout trailingConstraintFrom:self.trailingConstraintView toView:self.trailingConstraintOtherView];
+    id trailingConstraint = [AutoLayout trailingConstraintFrom:self.trailingConstraintView
+                                                        toView:self.trailingConstraintOtherView];
     
     XCTAssert([trailingConstraint isKindOfClass:[NSLayoutConstraint class]], @"Trailing constraint is not an instance of NSLayoutConstraint");
-    
-    
     XCTAssertTrue([(NSLayoutConstraint *)trailingConstraint isActive], @"Constraint is not trailing");
 }
 -(void)testGenericConstraintFrom{
@@ -151,11 +151,11 @@
     XCTAssertNotNil(self.genericView, @"Self.genericVie is nil!");
     XCTAssertNotNil(self.genericSuperView, @"Self.genericSuperView is nil!");
     
-    id genericConstraint = [AutoLayout genericConstraintFrom:self.genericView toView:self.genericSuperView withAttribute:NSLayoutAttributeTop];
+    id genericConstraint = [AutoLayout genericConstraintFrom:self.genericView
+                                                      toView:self.genericSuperView
+                                               withAttribute:NSLayoutAttributeTop];
     
     XCTAssert([genericConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
-    
-    
     XCTAssertTrue([(NSLayoutConstraint *)genericConstraint isActive], @"Constraint was not activated");
 }
 
