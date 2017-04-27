@@ -9,7 +9,6 @@
 #import "LookUpRerservationController.h"
 
 #import "AutoLayout.h"
-
 #import "AppDelegate.h"
 
 #import "Reservation+CoreDataClass.h"
@@ -40,6 +39,9 @@ BOOL isSearching;
 -(void)loadView {
     [super loadView];
     
+    [self setupViewLayout];
+    
+    [self.lookUpTable setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (NSArray *) reservationDetails {
@@ -77,6 +79,7 @@ BOOL isSearching;
     
     [self.lookUpTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
+    //Canceling apples constraints.
     self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
     self.lookUpTable.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -84,7 +87,7 @@ BOOL isSearching;
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.lookUpTable];
     
-    //Getting the value for the navigationBar
+//    Getting the value for the navigationBar
     float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
     
     CGFloat statusBarHeight = 20.0;
@@ -96,7 +99,7 @@ BOOL isSearching;
                                      @"lookUpTable":self.lookUpTable};
     
     NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
-                                        @"frameHight": [NSNumber numberWithFloat:frameHeight]};
+                                        @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
     //Setting up how its going to display on the table view using the NSDictionaries above^.
     NSString *visualFormatString =@"V:|-topMargin-[searchBar(==topMargin)][lookUpTable(==frameHeight)]|";
     
@@ -107,15 +110,46 @@ BOOL isSearching;
     [AutoLayout trailingConstraintFrom:self.lookUpTable toView:self.view];
     
     [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
-
+    
+//    [AutoLayout fullScreenConstraintsWithVFLForView:self.lookUpTable];
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    }
+    
+    Reservation *reservation;
+    //defaults to all the reservation on the tableView.
+    if (self.filterReservations == nil) {
+        reservation = self.allReservations[indexPath.row];
+    } else {
+        reservation = self.filterReservations[indexPath.row];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"MM-dd-yy"];
+    
+    NSString *formatStartDateString = [dateFormatter stringFromDate:reservation.startDate];
+    NSString *formatEndDateString = [dateFormatter stringFromDate:reservation.endDate];
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ %@: %@ In Room: %i, from: %@ To: %@", reservation.guest.firstName, reservation.guest.lastName, reservation.room.hotel.name, reservation.room.number, formatStartDateString, formatEndDateString];
+    
+    cell.textLabel.numberOfLines = 0;
+    
+    return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    if (isSearching) {
+        return self.filterReservations.count;
+    }else{
+        return self.allReservations.count;
+    }
 }
 
 
