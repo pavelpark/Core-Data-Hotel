@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 #import "ViewController.h"
 
 //Grabbing from the Json file.
@@ -31,6 +35,8 @@
     
     [self setupRootViewController];
     [self bootStrapApp];
+    
+    [Fabric with:@[[Crashlytics class]]];
     
     return YES;
 }
