@@ -48,7 +48,9 @@
     
     NSDate *startDate = self.startDate.date;
 
-    availabilityController.startDate = [NSDate date];
+    availabilityController.startDate = startDate;
+    availabilityController.endDate = endDate;
+
     [self.navigationController pushViewController:availabilityController animated:YES];
 }
 
