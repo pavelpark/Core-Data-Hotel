@@ -25,7 +25,8 @@
 @property(strong,nonatomic) UIView *trailingConstraintView;
 @property(strong,nonatomic) UIView *trailingConstraintOtherView;
 
-@property(strong,nonatomic) UIView *fullScreenConstraintForView;
+@property(strong,nonatomic) UIView *genericView;
+@property(strong,nonatomic) UIView *genericSuperView;
 
 @end
 
@@ -48,8 +49,10 @@
     self.trailingConstraintView = [[UIView alloc]init];
     self.trailingConstraintOtherView = [[UIView alloc]init];
     
-    self.fullScreenConstraintForView = [[UIView alloc]init];
-
+    self.genericView = [[UIView alloc]init];
+    self.genericSuperView = [[UIView alloc]init];
+    
+    
     
 //    //creating subViews
     [self.testController.view addSubview:self.testView];
@@ -64,7 +67,8 @@
     [self.testController.view addSubview:self.trailingConstraintView];
     [self.testController.view addSubview:self.trailingConstraintOtherView];
     
-    [self.testController.view addSubview:self.fullScreenConstraintForView];
+    [self.testController.view addSubview:self.genericView];
+    [self.testController.view addSubview:self.genericSuperView];
 
 }
 
@@ -85,7 +89,8 @@
     self.trailingConstraintView = nil;
     self.trailingConstraintOtherView = nil;
     
-    self.fullScreenConstraintForView = nil;
+    self.genericView = nil;
+    self.genericSuperView = nil;
 
     [super tearDown];
 }
@@ -141,6 +146,19 @@
     
     XCTAssertTrue([(NSLayoutConstraint *)trailingConstraint isActive], @"Constraint is not trailing");
 }
+-(void)testGenericConstraintFrom{
+    
+    XCTAssertNotNil(self.genericView, @"Self.genericVie is nil!");
+    XCTAssertNotNil(self.genericSuperView, @"Self.genericSuperView is nil!");
+    
+    id genericConstraint = [AutoLayout genericConstraintFrom:self.genericView toView:self.genericSuperView withAttribute:NSLayoutAttributeTop];
+    
+    XCTAssert([genericConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    
+    
+    XCTAssertTrue([(NSLayoutConstraint *)genericConstraint isActive], @"Constraint was not activated");
+}
+
 
 
 
