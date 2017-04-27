@@ -83,7 +83,6 @@
     reservation.startDate = self.startDate;
     reservation.endDate = self.endDate;
     reservation.room = self.selectedRoom;
-    
     self.selectedRoom.reservation = reservation;
     
     reservation.guest = [NSEntityDescription insertNewObjectForEntityForName:@"Guest" inManagedObjectContext:context];
@@ -98,10 +97,14 @@
         [bookError userInfo];
         //        UIAlertAction *alert = [UIAlertAction actionWithTitle:@"Error messages suck" style:UIAlertActionStyleDestructive handler:nil];
     } else {
+        [context save:&bookError];
+
         NSLog(@"Saved successfully");
         NSLog(@"%@", self.firstName);
         
         [self.navigationController popToRootViewControllerAnimated:YES];
+
     }
+    
     
 }@end
