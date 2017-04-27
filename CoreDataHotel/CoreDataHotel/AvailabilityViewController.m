@@ -126,7 +126,9 @@
     
     Room *room = [self.availableRooms objectAtIndexPath:indexPath];
     BookViewController *bookVC = [[BookViewController alloc]init];
-    
+    bookVC.selectedRoom = room;
+    bookVC.startDate = self.startDate;
+    bookVC.endDate = self.endDate;
     [self.navigationController pushViewController:bookVC animated:YES];
     NSLog(@"Selected");
 }
