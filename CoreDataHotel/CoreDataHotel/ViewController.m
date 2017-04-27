@@ -6,6 +6,8 @@
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
+@import Crashlytics;
+
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
@@ -23,6 +25,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupLayout];
+    
 }
 
 -(void)setupLayout{
@@ -74,9 +77,12 @@
     HotelsViewController *hotelsView = [[HotelsViewController alloc]init];
     NSLog(@"Works");
     [self.navigationController pushViewController: hotelsView animated:YES];
+    [Answers logCustomEventWithName:@"ViewController - Browse Button Pressed" customAttributes:nil];
 }
 
 -(void)bookButtonSelected{
+    
+    [Answers logCustomEventWithName:@"ViewController - Browse Button Pressed" customAttributes:nil];
     
     DatePickerViewController *datePickerController = [[DatePickerViewController alloc]init];
     

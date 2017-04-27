@@ -7,7 +7,8 @@
 //
 
 #import "LookUpRerservationController.h"
-
+#import "BookViewController.h"
+#import "AvailabilityViewController.h"
 @interface LookUpRerservationController ()
 
 @end
@@ -16,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 
