@@ -25,6 +25,8 @@
 @property(strong,nonatomic) UIView *trailingConstraintView;
 @property(strong,nonatomic) UIView *trailingConstraintOtherView;
 
+@property(strong,nonatomic) UIView *fullScreenConstraintForView;
+
 @end
 
 @implementation AutoLayoutTests
@@ -45,6 +47,8 @@
     
     self.trailingConstraintView = [[UIView alloc]init];
     self.trailingConstraintOtherView = [[UIView alloc]init];
+    
+    self.fullScreenConstraintForView = [[UIView alloc]init];
 
     
 //    //creating subViews
@@ -59,6 +63,9 @@
     
     [self.testController.view addSubview:self.trailingConstraintView];
     [self.testController.view addSubview:self.trailingConstraintOtherView];
+    
+    [self.testController.view addSubview:self.fullScreenConstraintForView];
+
 }
 
 - (void)tearDown {
@@ -78,6 +85,8 @@
     self.trailingConstraintView = nil;
     self.trailingConstraintOtherView = nil;
     
+    self.fullScreenConstraintForView = nil;
+
     [super tearDown];
 }
 
@@ -115,24 +124,25 @@
     
     id leadingConstraint = [AutoLayout leadingConstraintFrom:self.leadingConstraintsView toView:self.leadingConstraintOtherView];
     
-    XCTAssert([leadingConstraint isKindOfClass:[NSLayoutConstraint class]], @"Leading Constraint is not a instance of NSLayoutConstraint");
+    XCTAssert([leadingConstraint isKindOfClass:[NSLayoutConstraint class]], @"Leading constraint is not a instance of NSLayoutConstraint");
     
-    XCTAssertTrue([(NSLayoutConstraint *)leadingConstraint isActive], @"No Leading Constraints!");
+    XCTAssertTrue([(NSLayoutConstraint *)leadingConstraint isActive], @"No Leading constraints!");
 }
 
--(void)testGenericConstraintFromToViewWithAttribute{
+-(void)testTrailingConstraintFrom{
     
-    XCTAssertNotNil(self.testController, @"The testController is nil!");
-    XCTAssertNotNil(self.testView, @"Self.testView is nil!");
-    XCTAssertNotNil(self.superView, @"Self.superView is nil!");
+    XCTAssertNotNil(self.trailingConstraintView, @"Self.trailingConstraintView");
+    XCTAssertNotNil(self.trailingConstraintOtherView, @"Self.trailingConstraintOtherView");
     
-    id constraint = [AutoLayout genericConstraintFrom:self.testView toView:self.superView withAttribute:NSLayoutAttributeTop];
+    id trailingConstraint = [AutoLayout trailingConstraintFrom:self.trailingConstraintView toView:self.trailingConstraintOtherView];
     
-    XCTAssert([constraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    XCTAssert([trailingConstraint isKindOfClass:[NSLayoutConstraint class]], @"Trailing constraint is not an instance of NSLayoutConstraint");
     
     
-    XCTAssertTrue([(NSLayoutConstraint *)constraint isActive], @"Constraint was not activated");
+    XCTAssertTrue([(NSLayoutConstraint *)trailingConstraint isActive], @"Constraint is not trailing");
 }
+
+
 
 
 
