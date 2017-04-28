@@ -36,6 +36,9 @@
 
 @property(strong,nonatomic) UIView *fullScreenConstraintView;
 
+@property(strong,nonatomic) UIView *centerXView;
+@property(strong,nonatomic) UIView *centerXOtherView;
+
 
 @end
 
@@ -69,6 +72,9 @@
     
     self.fullScreenConstraintView = [[UIView alloc]init];
     
+    self.centerXView = [[UIView alloc]init];
+    self.centerXOtherView = [[UIView alloc]init];
+    
     
 //    //creating subViews
     [self.testController.view addSubview:self.testView];
@@ -94,6 +100,8 @@
     
     [self.testController.view addSubview:self.fullScreenConstraintView];
 
+    [self.testController.view addSubview:self.centerXView];
+    [self.testController.view addSubview:self.centerXOtherView];
 
 }
 
@@ -125,6 +133,8 @@
     
     self.fullScreenConstraintView = nil;
 
+    self.centerXView = nil;
+    self.centerXOtherView = nil;
 
     [super tearDown];
 }
@@ -214,7 +224,6 @@
     XCTAssert([topConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
     XCTAssertTrue([(NSLayoutConstraint *)topConstraint isActive], @"Constraint was not activated");
 }
-
 -(void)testFullScreenConstraintsWithVFLForView{
     
     XCTAssertNotNil(self.fullScreenConstraintView, @"Self.genericView is nil!");
@@ -223,6 +232,18 @@
     
     XCTAssert([fullScreenConstraintView isKindOfClass:[NSArray class]], @"Constraint is not an instance of NSLayoutConstraint");
 }
+-(void)testCenterXforView{
+    
+    XCTAssertNotNil(self.centerXView, @"Self.centerXView is nil!");
+    XCTAssertNotNil(self.centerXOtherView, @"Self.centerXSuperView is nil!");
+    
+    id centerXConstraint = [AutoLayout topConstraintFrom:self.centerXView
+                                              toView:self.centerXOtherView];
+    
+    XCTAssert([centerXConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    XCTAssertTrue([(NSLayoutConstraint *)centerXConstraint isActive], @"Constraint was not activated");
+}
+
 
 
 
