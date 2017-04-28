@@ -6,11 +6,15 @@
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
+@import Crashlytics;
+
 #import "ViewController.h"
 #import "AutoLayout.h"
 #import "HotelsViewController.h"
 
 #import "DatePickerViewController.h"
+
+#import "LookupViewController.h"
 @interface ViewController ()
 
 @end
@@ -23,6 +27,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self setupLayout];
+    
 }
 
 -(void)setupLayout{
@@ -68,19 +73,30 @@
     [browseButton addTarget:self action:@selector(browseButtonSelected) forControlEvents:UIControlEventTouchUpInside];
     
     [bookButton addTarget:self action:@selector(bookButtonSelected) forControlEvents:UIControlEventTouchUpInside];
+    [lookupButton addTarget:self action:@selector(lookUpButtonSelected) forControlEvents:UIControlEventTouchUpInside];
     
 }
 -(void)browseButtonSelected{
     HotelsViewController *hotelsView = [[HotelsViewController alloc]init];
     NSLog(@"Works");
     [self.navigationController pushViewController: hotelsView animated:YES];
+    [Answers logCustomEventWithName:@"ViewController - Browse Button Pressed" customAttributes:nil];
 }
 
 -(void)bookButtonSelected{
     
+    [Answers logCustomEventWithName:@"ViewController - Browse Button Pressed" customAttributes:nil];
+    
     DatePickerViewController *datePickerController = [[DatePickerViewController alloc]init];
     
     [self.navigationController pushViewController:datePickerController animated:YES];
+}
+
+-(void)lookUpButtonSelected{
+    
+    LookupViewController *lookUpController = [[LookupViewController alloc]init];
+    
+    [self.navigationController pushViewController:lookUpController animated:YES];
 }
 
 

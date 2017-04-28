@@ -6,6 +6,8 @@
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
+@import Crashlytics;
+
 #import "BookViewController.h"
 
 #import "AutoLayout.h"
@@ -29,19 +31,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UITextField *firstName = [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 200, 40)];
-    firstName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    firstName.backgroundColor=[UIColor redColor];
-    firstName.placeholder=@"firstName";
+    self.firstName = [[UITextField alloc] initWithFrame:CGRectMake(45, 30, 200, 40)];
+    self.firstName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.firstName.backgroundColor=[UIColor redColor];
+    self.firstName.placeholder=@"firstName";
     
-    UITextField *lastName = [[UITextField alloc] initWithFrame:CGRectMake(45, firstName.frame.origin.y+75, 200, 40)];
-    lastName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
-    lastName.backgroundColor=[UIColor redColor];
-    lastName.placeholder=@"lastName";
+    self.lastName = [[UITextField alloc] initWithFrame:CGRectMake(45, self.firstName.frame.origin.y+75, 200, 40)];
+    self.lastName.textColor = [UIColor colorWithRed:0/256.0 green:84/256.0 blue:129/256.0 alpha:1.0];
+    self.lastName.backgroundColor=[UIColor redColor];
+    self.lastName.placeholder=@"lastName";
     
-    UITextField *email = [[UITextField alloc]initWithFrame:CGRectMake(45, lastName.frame.origin.y+75, 200, 40)];
-    email.backgroundColor = [UIColor redColor];
-    email.placeholder = @"email";
+    self.email = [[UITextField alloc]initWithFrame:CGRectMake(45, self.lastName.frame.origin.y+75, 200, 40)];
+    self.email.backgroundColor = [UIColor redColor];
+    self.email.placeholder = @"email";
     
     UIButton *bookButton = [UIButton buttonWithType:UIButtonTypeCustom];
     bookButton.frame = CGRectMake(80.0, 120.0, 160.0, 40.0);
@@ -65,9 +67,9 @@
     
     
     view.backgroundColor = [UIColor whiteColor];
-    [view addSubview:firstName];
-    [view addSubview:lastName];
-    [view addSubview:email];
+    [view addSubview:self.firstName];
+    [view addSubview:self.lastName];
+    [view addSubview:self.email];
     
     [self.view addSubview:view];
 }
@@ -95,15 +97,16 @@
     if (![context save:&bookError]) {
         NSLog(@"Can't Save! %@ %@", bookError, [bookError localizedDescription]);
         [bookError userInfo];
+        
         //        UIAlertAction *alert = [UIAlertAction actionWithTitle:@"Error messages suck" style:UIAlertActionStyleDestructive handler:nil];
     } else {
-        [context save:&bookError];
 
         NSLog(@"Saved successfully");
         NSLog(@"%@", self.firstName);
         
+        [context save:&bookError];
+        
         [self.navigationController popToRootViewControllerAnimated:YES];
-
     }
     
     
