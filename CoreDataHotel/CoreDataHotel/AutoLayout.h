@@ -56,11 +56,17 @@
                 forItemBottom:(id)item
                  toItemBottom:(id)otherItem;
 
-+(NSLayoutConstraint *)height:(CGFloat)height forView:(UIView *)view;
-+(NSLayoutConstraint *)width:(CGFloat)width forView:(UIView *)view;
++(NSLayoutConstraint *)height:(CGFloat)height
+                      forView:(UIView *)view;
 
-+(NSLayoutConstraint *)centerXforView:(UIView *)view toView:(UIView *)otherView;
-+(NSLayoutConstraint *)centerYforView:(UIView *)view toView:(UIView *)otherView;
++(NSLayoutConstraint *)width:(CGFloat)width
+                     forView:(UIView *)view;
+
++(NSLayoutConstraint *)centerXforView:(UIView *)view
+                               toView:(UIView *)otherView;
+
++(NSLayoutConstraint *)centerYforView:(UIView *)view
+                               toView:(UIView *)otherView;
 
 
 @end

@@ -28,6 +28,13 @@
 @property(strong,nonatomic) UIView *genericView;
 @property(strong,nonatomic) UIView *genericSuperView;
 
+@property(strong,nonatomic) UIView *bottomView;
+@property(strong,nonatomic) UIView *bottomOtherView;
+
+@property(strong,nonatomic) UIView *topView;
+@property(strong,nonatomic) UIView *topOtherView;
+
+
 @end
 
 @implementation AutoLayoutTests
@@ -52,6 +59,11 @@
     self.genericView = [[UIView alloc]init];
     self.genericSuperView = [[UIView alloc]init];
     
+    self.bottomView = [[UIView alloc]init];
+    self.bottomOtherView = [[UIView alloc]init];
+    
+    self.topView = [[UIView alloc]init];
+    self.topOtherView = [[UIView alloc]init];
     
     
 //    //creating subViews
@@ -69,6 +81,12 @@
     
     [self.testController.view addSubview:self.genericView];
     [self.testController.view addSubview:self.genericSuperView];
+    
+    [self.testController.view addSubview:self.bottomView];
+    [self.testController.view addSubview:self.bottomOtherView];
+    
+    [self.testController.view addSubview:self.topView];
+    [self.testController.view addSubview:self.topOtherView];
 
 }
 
@@ -91,6 +109,12 @@
     
     self.genericView = nil;
     self.genericSuperView = nil;
+    
+    self.bottomView = nil;
+    self.bottomOtherView = nil;
+    
+    self.topView = nil;
+    self.topOtherView = nil;
 
     [super tearDown];
 }
@@ -148,7 +172,7 @@
 }
 -(void)testGenericConstraintFrom{
     
-    XCTAssertNotNil(self.genericView, @"Self.genericVie is nil!");
+    XCTAssertNotNil(self.genericView, @"Self.genericView is nil!");
     XCTAssertNotNil(self.genericSuperView, @"Self.genericSuperView is nil!");
     
     id genericConstraint = [AutoLayout genericConstraintFrom:self.genericView
@@ -157,6 +181,17 @@
     
     XCTAssert([genericConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
     XCTAssertTrue([(NSLayoutConstraint *)genericConstraint isActive], @"Constraint was not activated");
+}
+-(void)testBottomConstraintFrom{
+    
+    XCTAssertNotNil(self.bottomView, @"Self.genericView is nil!");
+    XCTAssertNotNil(self.bottomOtherView, @"Self.genericSuperView is nil!");
+    
+    id bottomConstraint = [AutoLayout bottomConstraintFrom:self.bottomView
+                                                     toView:self.bottomOtherView];
+    
+    XCTAssert([bottomConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    XCTAssertTrue([(NSLayoutConstraint *)bottomConstraint isActive], @"Constraint was not activated");
 }
 
 
