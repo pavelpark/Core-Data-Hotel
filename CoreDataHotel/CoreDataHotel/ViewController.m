@@ -14,7 +14,7 @@
 
 #import "DatePickerViewController.h"
 
-#import "LookUpRerservationController.h"
+#import "LookupViewController.h"
 @interface ViewController ()
 
 @end
@@ -94,7 +94,7 @@
 
 -(void)lookUpButtonSelected{
     
-    LookUpRerservationController *lookUpController = [[LookUpRerservationController alloc]init];
+    LookupViewController *lookUpController = [[LookupViewController alloc]init];
     
     [self.navigationController pushViewController:lookUpController animated:YES];
 }

@@ -1,12 +1,12 @@
 //
-//  LookUpRerservationController.m
+//  LookupViewController.m
 //  CoreDataHotel
 //
-//  Created by Pavel Parkhomey on 4/26/17.
+//  Created by Pavel Parkhomey on 4/27/17.
 //  Copyright © 2017 Pavel Parkhomey. All rights reserved.
 //
 
-#import "LookUpRerservationController.h"
+#import "LookupViewController.h"
 
 #import "AutoLayout.h"
 #import "AppDelegate.h"
@@ -23,7 +23,7 @@
 #import "Guest+CoreDataClass.h"
 #import "Guest+CoreDataProperties.h"
 
-@interface LookUpRerservationController () <UITableViewDataSource, UISearchBarDelegate>
+@interface LookupViewController () <UITableViewDataSource, UISearchBarDelegate>
 
 @property(strong,nonatomic) UITableView *lookUpTable;
 @property(strong,nonatomic) NSArray *allReservations;
@@ -32,16 +32,15 @@
 
 @end
 
-@implementation LookUpRerservationController
+@implementation LookupViewController
 
 BOOL isSearching;
 
 -(void)loadView {
     [super loadView];
-    
-    [self setupViewLayout];
-    
-    [self.lookUpTable setBackgroundColor:[UIColor whiteColor]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self setupSearchBar];
+    [self setupTableView];
 }
 
 - (NSArray *) reservationDetails {
@@ -70,49 +69,32 @@ BOOL isSearching;
     [self.lookUpTable reloadData];
 }
 
--(void) setupViewLayout {
-    self.lookUpTable = [[UITableView alloc]init];
+- (void)setupSearchBar {
     self.searchBar = [[UISearchBar alloc]init];
-    
-    self.lookUpTable.dataSource = self;
-    self.searchBar.delegate = self;
-    
-    [self.lookUpTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
-    //Canceling apples constraints.
-    self.searchBar.translatesAutoresizingMaskIntoConstraints = NO;
-    self.lookUpTable.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    //Adds it to the actual view with the addSubview.
+    [self.searchBar setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.view addSubview:self.searchBar];
-    [self.view addSubview:self.lookUpTable];
+    self.searchBar.delegate = self;
+    self.searchBar.backgroundColor = [UIColor redColor];
     
-//    Getting the value for the navigationBar
-    float navBarHeight = CGRectGetHeight(self.navigationController.navigationBar.frame);
-    
-    CGFloat statusBarHeight = 20.0;
-    CGFloat topMargin = navBarHeight + statusBarHeight;
-    CGFloat windowHeight = self.view.frame.size.height;
-    CGFloat frameHeight = (windowHeight - topMargin - statusBarHeight);
-    
-    NSDictionary *viewDictionary = @{@"searchBar":self.searchBar,
-                                     @"lookUpTable":self.lookUpTable};
-    
-    NSDictionary *metricsDictionary = @{@"topMargin": [NSNumber numberWithFloat:topMargin],
-                                        @"frameHeight": [NSNumber numberWithFloat:frameHeight]};
-    //Setting up how its going to display on the table view using the NSDictionaries above^.
-    NSString *visualFormatString =@"V:|-topMargin-[searchBar(==topMargin)][lookUpTable(==frameHeight)]|";
-    
-    //spreding out across the view with constraints.
+    [AutoLayout height:30 forView:self.searchBar];
+    [AutoLayout offset:0 forItemTop:self.searchBar toItemBottom:self.topLayoutGuide];
     [AutoLayout leadingConstraintFrom:self.searchBar toView:self.view];
     [AutoLayout trailingConstraintFrom:self.searchBar toView:self.view];
+    
+}
+
+
+- (void)setupTableView {
+    self.lookUpTable = [[UITableView alloc]init];
+    [self.view addSubview:self.lookUpTable];
+    [self.lookUpTable setTranslatesAutoresizingMaskIntoConstraints:NO];
+    self.lookUpTable.dataSource = self;
+    [self.lookUpTable registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [AutoLayout offset:0 forItemTop:self.lookUpTable toItemBottom:self.searchBar];
     [AutoLayout leadingConstraintFrom:self.lookUpTable toView:self.view];
     [AutoLayout trailingConstraintFrom:self.lookUpTable toView:self.view];
-    
-    [AutoLayout constraintsWithVFLForViewDictionary:viewDictionary forMetricsDictionary:metricsDictionary withOptions:0 withVisualFormat:visualFormatString];
-    
-//    [AutoLayout fullScreenConstraintsWithVFLForView:self.lookUpTable];
-    
+    [AutoLayout centerYforView:self.lookUpTable toView:self.view];
+    [AutoLayout offset:0 forItemTop:self.lookUpTable toItemBottom:self.bottomLayoutGuide];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -151,6 +133,5 @@ BOOL isSearching;
         return self.allReservations.count;
     }
 }
-
 
 @end

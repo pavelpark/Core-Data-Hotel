@@ -29,13 +29,38 @@
                                       toView:(UIView *)otherView;
 
 +(NSLayoutConstraint *)trailingConstraintFrom:(UIView *)view
-                                      toView:(UIView *)otherView;
+                                       toView:(UIView *)otherView;
+
++(NSLayoutConstraint *)topConstraintFrom:(UIView *)view
+                                  toView:(UIView *)otherView;
+
++(NSLayoutConstraint *)bottomConstraintFrom:(UIView *)view
+                                     toView:(UIView *)otherView;
 
 +(NSArray *)constraintsWithVFLForViewDictionary:(NSDictionary *)viewDictionary
                            forMetricsDictionary:(NSDictionary *)metricsDictionary
                                     withOptions:(NSLayoutFormatOptions)options
                                withVisualFormat:(NSString *)visualFormat;
 
+
++(NSLayoutConstraint *)offset:(CGFloat)offset
+                   forItemTop:(id)item
+                 toItemBottom:(id)otherItem;
+
+
++(NSLayoutConstraint *)offset:(CGFloat)offset
+                forItemBottom:(id)item
+                    toItemTop:(id)otherItem;
+
++(NSLayoutConstraint *)offset:(CGFloat)offset
+                forItemBottom:(id)item
+                 toItemBottom:(id)otherItem;
+
++(NSLayoutConstraint *)height:(CGFloat)height forView:(UIView *)view;
++(NSLayoutConstraint *)width:(CGFloat)width forView:(UIView *)view;
+
++(NSLayoutConstraint *)centerXforView:(UIView *)view toView:(UIView *)otherView;
++(NSLayoutConstraint *)centerYforView:(UIView *)view toView:(UIView *)otherView;
 
 
 @end

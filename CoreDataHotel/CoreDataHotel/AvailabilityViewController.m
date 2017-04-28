@@ -81,11 +81,6 @@
     
     NSLog(@"%@", _startDate);
     NSLog(@"%@", _endDate);
-    
-
-
-    // Do any additional setup after loading the view.
-    
 }
 
 -(void)setUpTableView{
