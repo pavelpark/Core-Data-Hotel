@@ -34,6 +34,8 @@
 @property(strong,nonatomic) UIView *topView;
 @property(strong,nonatomic) UIView *topOtherView;
 
+@property(strong,nonatomic) UIView *fullScreenConstraintView;
+
 
 @end
 
@@ -65,6 +67,8 @@
     self.topView = [[UIView alloc]init];
     self.topOtherView = [[UIView alloc]init];
     
+    self.fullScreenConstraintView = [[UIView alloc]init];
+    
     
 //    //creating subViews
     [self.testController.view addSubview:self.testView];
@@ -87,6 +91,9 @@
     
     [self.testController.view addSubview:self.topView];
     [self.testController.view addSubview:self.topOtherView];
+    
+    [self.testController.view addSubview:self.fullScreenConstraintView];
+
 
 }
 
@@ -115,6 +122,9 @@
     
     self.topView = nil;
     self.topOtherView = nil;
+    
+    self.fullScreenConstraintView = nil;
+
 
     [super tearDown];
 }
@@ -184,8 +194,8 @@
 }
 -(void)testBottomConstraintFrom{
     
-    XCTAssertNotNil(self.bottomView, @"Self.genericView is nil!");
-    XCTAssertNotNil(self.bottomOtherView, @"Self.genericSuperView is nil!");
+    XCTAssertNotNil(self.bottomView, @"Self.bottomView is nil!");
+    XCTAssertNotNil(self.bottomOtherView, @"Self.bottomSuperView is nil!");
     
     id bottomConstraint = [AutoLayout bottomConstraintFrom:self.bottomView
                                                      toView:self.bottomOtherView];
@@ -195,8 +205,8 @@
 }
 -(void)testTopConstraintFrom{
     
-    XCTAssertNotNil(self.topView, @"Self.genericView is nil!");
-    XCTAssertNotNil(self.topOtherView, @"Self.genericSuperView is nil!");
+    XCTAssertNotNil(self.topView, @"Self.topView is nil!");
+    XCTAssertNotNil(self.topOtherView, @"Self.topSuperView is nil!");
     
     id topConstraint = [AutoLayout topConstraintFrom:self.topView
                                                     toView:self.topOtherView];
@@ -205,6 +215,14 @@
     XCTAssertTrue([(NSLayoutConstraint *)topConstraint isActive], @"Constraint was not activated");
 }
 
+-(void)testFullScreenConstraintsWithVFLForView{
+    
+    XCTAssertNotNil(self.fullScreenConstraintView, @"Self.genericView is nil!");
+    
+    id fullScreenConstraintView = [AutoLayout fullScreenConstraintsWithVFLForView:self.fullScreenConstraintView];
+    
+    XCTAssert([fullScreenConstraintView isKindOfClass:[NSArray class]], @"Constraint is not an instance of NSLayoutConstraint");
+}
 
 
 
