@@ -193,6 +193,18 @@
     XCTAssert([bottomConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
     XCTAssertTrue([(NSLayoutConstraint *)bottomConstraint isActive], @"Constraint was not activated");
 }
+-(void)testTopConstraintFrom{
+    
+    XCTAssertNotNil(self.topView, @"Self.genericView is nil!");
+    XCTAssertNotNil(self.topOtherView, @"Self.genericSuperView is nil!");
+    
+    id topConstraint = [AutoLayout topConstraintFrom:self.topView
+                                                    toView:self.topOtherView];
+    
+    XCTAssert([topConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    XCTAssertTrue([(NSLayoutConstraint *)topConstraint isActive], @"Constraint was not activated");
+}
+
 
 
 
