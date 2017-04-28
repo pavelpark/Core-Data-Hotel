@@ -39,6 +39,9 @@
 @property(strong,nonatomic) UIView *centerXView;
 @property(strong,nonatomic) UIView *centerXOtherView;
 
+@property(strong,nonatomic) UIView *centerYView;
+@property(strong,nonatomic) UIView *centerYOtherView;
+
 
 @end
 
@@ -75,6 +78,8 @@
     self.centerXView = [[UIView alloc]init];
     self.centerXOtherView = [[UIView alloc]init];
     
+    self.centerYView = [[UIView alloc]init];
+    self.centerYOtherView = [[UIView alloc]init];
     
 //    //creating subViews
     [self.testController.view addSubview:self.testView];
@@ -102,6 +107,9 @@
 
     [self.testController.view addSubview:self.centerXView];
     [self.testController.view addSubview:self.centerXOtherView];
+    
+    [self.testController.view addSubview:self.centerYView];
+    [self.testController.view addSubview:self.centerYOtherView];
 
 }
 
@@ -135,6 +143,9 @@
 
     self.centerXView = nil;
     self.centerXOtherView = nil;
+    
+    self.centerYView = nil;
+    self.centerYOtherView = nil;
 
     [super tearDown];
 }
@@ -243,8 +254,17 @@
     XCTAssert([centerXConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
     XCTAssertTrue([(NSLayoutConstraint *)centerXConstraint isActive], @"Constraint was not activated");
 }
-
-
+-(void)testCenterYforView{
+    
+    XCTAssertNotNil(self.centerYView, @"Self.centerYView is nil!");
+    XCTAssertNotNil(self.centerYOtherView, @"Self.centerYSuperView is nil!");
+    
+    id centerYConstraint = [AutoLayout topConstraintFrom:self.centerYView
+                                                  toView:self.centerYOtherView];
+    
+    XCTAssert([centerYConstraint isKindOfClass:[NSLayoutConstraint class]], @"Constraint is not an instance of NSLayoutConstraint");
+    XCTAssertTrue([(NSLayoutConstraint *)centerYConstraint isActive], @"Constraint was not activated");
+}
 
 
 @end
